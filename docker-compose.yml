@@ -1,0 +1,22 @@
+db:
+  image: mysql:latest
+  ports:
+    - "3306:3306"
+  volumes:
+    - ./var/mysql:/var/lib/mysql
+  environment:
+    - MYSQL_DATABASE=db
+    - MYSQL_USER=dbsiges
+    - MYSQL_PASSWORD=mysql123
+    - MYSQL_ROOT_PASSWORD=mysql123
+
+web:
+  # image: tommylau/php-5.2
+  image: tommylau/php-5.2
+  ports:
+    - "80:80"
+    - "443:443"
+  links:
+    - db
+  volumes:
+    - ./www:/app
